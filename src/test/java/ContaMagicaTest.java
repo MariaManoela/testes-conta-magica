@@ -78,7 +78,7 @@ public class ContaMagicaTest {
     public void verificaPlatinumParaGold(){
         System.out.println("=======PLATINUM PARA GOLD=======");
         conta1.deposito(new BigDecimal(200000));
-        conta1.retirada(new BigDecimal(150000));
+        conta1.retirada(new BigDecimal(160000));
         assertEquals(Categoria.GOLD, conta1.getStatus());
         System.out.println(conta1.getStatus());
     }

@@ -68,7 +68,7 @@ public class ContaMagica {
         if (saldo.compareTo(new BigDecimal(50000)) < 0) {
             categoria = Categoria.SILVER;
         }
-        else if(saldo.compareTo(new BigDecimal(50000)) == 0 || (saldo.compareTo(new BigDecimal(50000)) > 0 && saldo.compareTo(new BigDecimal(200000)) < 0)) {
+        else if (saldo.compareTo(new BigDecimal(50000)) == 0 || (saldo.compareTo(new BigDecimal(50000)) > 0 && saldo.compareTo(new BigDecimal(200000)) < 0)) {
             categoria = Categoria.GOLD;
         }
         else{
