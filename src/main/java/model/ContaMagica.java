@@ -16,6 +16,19 @@ public class ContaMagica {
         this.saldo = saldo;
     }
 
+    public Categoria getStatus() {
+        if (saldo.compareTo(new BigDecimal(50000)) < 0) {
+            categoria = Categoria.SILVER;
+        }
+        else if (saldo.compareTo(new BigDecimal(50000)) == 0 || (saldo.compareTo(new BigDecimal(50000)) > 0 && saldo.compareTo(new BigDecimal(200000)) < 0)) {
+            categoria = Categoria.GOLD;
+        }
+        else{
+            categoria = Categoria.PLATINUM;
+        }
+        return categoria;
+    }
+
     public void deposito(BigDecimal valor) {
         String deposita = saldo.toString();
 
@@ -62,18 +75,5 @@ public class ContaMagica {
                 }
             }
         }
-    }
-
-    public Categoria getStatus() {
-        if (saldo.compareTo(new BigDecimal(50000)) < 0) {
-            categoria = Categoria.SILVER;
-        }
-        else if (saldo.compareTo(new BigDecimal(50000)) == 0 || (saldo.compareTo(new BigDecimal(50000)) > 0 && saldo.compareTo(new BigDecimal(200000)) < 0)) {
-            categoria = Categoria.GOLD;
-        }
-        else{
-            categoria = Categoria.PLATINUM;
-        }
-        return categoria;
     }
 }
