@@ -42,21 +42,26 @@ public class ContaMagica {
     }
 
     public void retirada(BigDecimal valor) {
-        String retirada = saldo.toString();
-        saldo = new BigDecimal(retirada).subtract(valor);
+        if (valor.compareTo(getSaldo()) > 0){
+            System.out.println("Saldo insuficiente! Selecione um novo valor.");
+        }
+        else{
+            String retirada = saldo.toString();
+            saldo = new BigDecimal(retirada).subtract(valor);
 
-        if (getStatus().equals(Categoria.PLATINUM)){
-            if (saldo.compareTo(new BigDecimal(100000)) < 0) {
-                categoria = Categoria.GOLD;
-                System.out.println("Você passou da categoria PLATINUM para GOLD.");
+            if (getStatus().equals(Categoria.PLATINUM)){
+                if (saldo.compareTo(new BigDecimal(100000)) < 0) {
+                    categoria = Categoria.GOLD;
+                    System.out.println("Você passou da categoria PLATINUM para GOLD.");
+                }
+            }
+            else if(getStatus().equals(Categoria.GOLD)){
+                if (saldo.compareTo(new BigDecimal(25000)) < 0) {
+                    categoria = Categoria.SILVER;
+                    System.out.println("Você passou da categoria GOLD para SILVER.");
+                }
             }
         }
-       else if(getStatus().equals(Categoria.GOLD)){
-          if (saldo.compareTo(new BigDecimal(25000)) < 0) {
-                categoria = Categoria.SILVER;
-                System.out.println("Você passou da categoria GOLD para SILVER.");
-          }
-       }
     }
 
     public Categoria getStatus() {

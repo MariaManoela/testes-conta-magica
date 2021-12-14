@@ -42,6 +42,15 @@ public class ContaMagicaTest {
     }
 
     @Test
+    public void retiraValorMaiorQueSaldo(){
+        System.out.println("=======RETIRANDO VALOR MAIOR QUE O SALDO=======");
+        conta1.deposito(new BigDecimal(1000));
+        conta1.retirada(new BigDecimal(1001));
+        assertEquals(new BigDecimal(1000), conta1.getSaldo());
+        System.out.println(conta1.getSaldo());
+    }
+
+    @Test
     public void verificaContaSilver(){
         System.out.println("=======CONTA SILVER=======");
         conta1.deposito(new BigDecimal(49999));
@@ -69,7 +78,7 @@ public class ContaMagicaTest {
     public void verificaPlatinumParaGold(){
         System.out.println("=======PLATINUM PARA GOLD=======");
         conta1.deposito(new BigDecimal(200000));
-        conta1.retirada(new BigDecimal(160000));
+        conta1.retirada(new BigDecimal(150000));
         assertEquals(Categoria.GOLD, conta1.getStatus());
         System.out.println(conta1.getStatus());
     }
