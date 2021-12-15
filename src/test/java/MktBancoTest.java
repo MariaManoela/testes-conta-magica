@@ -5,12 +5,11 @@ import model.ContaMagica;
 import model.MktBanco;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 
-public class ContaMagicaTestMockito {
+public class MktBancoTest {
     private MktBanco mktBanco;
     private ContaMagica contaMagica;
 
