@@ -21,14 +21,6 @@ public class ContaMagicaTestMockito {
     }
 
     @Test
-    public void deposita(){
-        System.out.println("=======DEPÓSITO=======");
-        Mockito.when(contaMagica.getSaldo()).thenReturn(new BigDecimal(50000));
-        assertEquals(new BigDecimal(50000), contaMagica.getSaldo());
-        System.out.println(contaMagica.getSaldo());
-    }
-
-    @Test
     public void faltanteSilver(){
         System.out.println("=======FALTANTE PRÓXIMA CATEGORIA SILVER PARA GOLD=======");
         Mockito.when(contaMagica.getSaldo()).thenReturn(new BigDecimal(20000));
