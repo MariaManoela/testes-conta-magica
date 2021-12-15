@@ -9,7 +9,7 @@ public class MktBanco {
         this.contaMagica = contaMagica;
     }
 
-    public BigDecimal faltanteProxCataegoria(){
+    public BigDecimal faltanteProxCategoria(){
         Categoria categoria = contaMagica.getCategoria();
         BigDecimal valor;
 
