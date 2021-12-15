@@ -30,26 +30,24 @@ public class ContaMagica {
     }
 
     public void deposito(BigDecimal valor) {
-        String deposita = saldo.toString();
-
         if (valor.compareTo(new BigDecimal(0)) == 0 || (valor.compareTo(new BigDecimal(0))) < 0){
             System.out.println("Não é possível depositar valores negativos ou nulos!");
         }
         else {
-            if (getStatus().equals(Categoria.SILVER)) {
-                saldo = new BigDecimal(deposita).add(valor);
+            if (categoria == Categoria.SILVER) {
+                saldo = saldo.add(valor);
             }
-            else if (getStatus().equals(Categoria.GOLD)) {
+            else if (categoria == Categoria.GOLD) {
                 BigDecimal valor2 = valor;
                 valor = valor.multiply(new BigDecimal(0.01));
                 valor = valor.add(valor2);
-                saldo = new BigDecimal(deposita).add(valor);
+                saldo = saldo.add(valor);
             }
-            else if (getStatus().equals(Categoria.PLATINUM)) {
+            else if (categoria == Categoria.PLATINUM) {
                 BigDecimal valor2 = valor;
                 valor = valor.multiply(new BigDecimal(0.025));
                 valor = valor.add(valor2);
-                saldo = new BigDecimal(deposita).add(valor);
+                saldo = saldo.add(valor);
             }
         }
     }
@@ -58,17 +56,16 @@ public class ContaMagica {
         if (valor.compareTo(getSaldo()) > 0){
             System.out.println("Saldo insuficiente! Selecione um novo valor.");
         }
-        else{
-            String retirada = saldo.toString();
-            saldo = new BigDecimal(retirada).subtract(valor);
+        else {
+            saldo = saldo.subtract(valor);
 
-            if (getStatus().equals(Categoria.PLATINUM)){
+            if (categoria == Categoria.PLATINUM){
                 if (saldo.compareTo(new BigDecimal(100000)) < 0) {
                     categoria = Categoria.GOLD;
                     System.out.println("Você passou da categoria PLATINUM para GOLD.");
                 }
             }
-            else if(getStatus().equals(Categoria.GOLD)){
+            else if (categoria == Categoria.GOLD){
                 if (saldo.compareTo(new BigDecimal(25000)) < 0) {
                     categoria = Categoria.SILVER;
                     System.out.println("Você passou da categoria GOLD para SILVER.");
