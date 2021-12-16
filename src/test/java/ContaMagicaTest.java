@@ -18,8 +18,8 @@ public class ContaMagicaTest {
     @Test
     public void deposita(){
         System.out.println("=======DEPOSITANDO=======");
-        conta1.deposito(new BigDecimal(5000));
-        assertEquals(new BigDecimal(5000), conta1.getSaldo());
+        conta1.deposito(new BigDecimal(30000));
+        assertEquals(new BigDecimal(30000), conta1.getSaldo());
         System.out.println(conta1.getSaldo());
     }
 
@@ -54,32 +54,33 @@ public class ContaMagicaTest {
     public void verificaContaSilver(){
         System.out.println("=======CONTA SILVER=======");
         conta1.deposito(new BigDecimal(49999));
-        assertEquals(Categoria.SILVER, conta1.getStatus());
-        System.out.println(conta1.getStatus());
+        assertEquals(Categoria.SILVER, conta1.getCategoria());
+        System.out.println(conta1.getCategoria());
     }
 
     @Test
     public void verificaContaGold(){
         System.out.println("=======CONTA GOLD=======");
         conta1.deposito(new BigDecimal(50000));
-        assertEquals(Categoria.GOLD, conta1.getStatus());
-        System.out.println(conta1.getStatus());
+        assertEquals(Categoria.GOLD, conta1.getCategoria());
+        System.out.println(conta1.getCategoria());
     }
 
     @Test
     public void verificaContaPlatinum(){
         System.out.println("=======CONTA PLATINUM=======");
         conta1.deposito(new BigDecimal(200000));
-        assertEquals(Categoria.PLATINUM, conta1.getStatus());
-        System.out.println(conta1.getStatus());
+        assertEquals(Categoria.PLATINUM, conta1.getCategoria());
+        System.out.println(conta1.getCategoria());
     }
 
     @Test
     public void verificaPlatinumParaGold(){
         System.out.println("=======PLATINUM PARA GOLD=======");
         conta1.deposito(new BigDecimal(200000));
-        conta1.retirada(new BigDecimal(140000));
-        assertEquals(Categoria.GOLD, conta1.getStatus());
-        System.out.println(conta1.getStatus());
+        conta1.retirada(new BigDecimal(170000));
+        conta1.retirada(new BigDecimal(10000));
+        assertEquals(Categoria.GOLD, conta1.getCategoria());
+        System.out.println(conta1.getCategoria());
     }
 }

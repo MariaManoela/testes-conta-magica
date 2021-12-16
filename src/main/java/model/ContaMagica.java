@@ -16,38 +16,23 @@ public class ContaMagica {
         this.saldo = saldo;
     }
 
-    public Categoria getStatus() {
-        if (saldo.compareTo(new BigDecimal(50000)) < 0) {
-            categoria = Categoria.SILVER;
-        }
-        else if (saldo.compareTo(new BigDecimal(50000)) == 0 || (saldo.compareTo(new BigDecimal(50000)) > 0 && saldo.compareTo(new BigDecimal(200000)) < 0)) {
-            categoria = Categoria.GOLD;
-        }
-        else{
-            categoria = Categoria.PLATINUM;
-        }
-        return categoria;
-    }
-
     public void deposito(BigDecimal valor) {
-        if (valor.compareTo(new BigDecimal(0)) == 0 || (valor.compareTo(new BigDecimal(0))) < 0){
+        if (valor.compareTo(new BigDecimal(0)) <= 0){
             System.out.println("Não é possível depositar valores negativos ou nulos!");
         }
-        else {
-            if (categoria == Categoria.SILVER) {
-                saldo = saldo.add(valor);
+        else{
+            saldo = saldo.add(valor);
+
+            if (saldo.compareTo(new BigDecimal(50000)) >= 0 && saldo.compareTo(new BigDecimal(200000)) < 0 && categoria == Categoria.SILVER){
+                categoria = Categoria.GOLD;
+                saldo = saldo.add(valor.multiply(new BigDecimal(0.01)));
             }
-            else if (categoria == Categoria.GOLD) {
-                BigDecimal valor2 = valor;
-                valor = valor.multiply(new BigDecimal(0.01));
-                valor = valor.add(valor2);
-                saldo = saldo.add(valor);
+            else if (saldo.compareTo(new BigDecimal(200000)) >= 0 && (categoria == Categoria.GOLD || categoria == Categoria.SILVER)) {
+                categoria = Categoria.PLATINUM;
+                saldo = saldo.add(valor.multiply(new BigDecimal(0.025)));
             }
-            else if (categoria == Categoria.PLATINUM) {
-                BigDecimal valor2 = valor;
-                valor = valor.multiply(new BigDecimal(0.025));
-                valor = valor.add(valor2);
-                saldo = saldo.add(valor);
+            else if (saldo.compareTo(new BigDecimal(50000)) < 0 && categoria == Categoria.SILVER){
+                categoria = Categoria.SILVER;
             }
         }
     }
