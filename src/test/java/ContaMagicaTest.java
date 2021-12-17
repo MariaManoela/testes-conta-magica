@@ -67,6 +67,15 @@ public class ContaMagicaTest {
     }
 
     @Test
+    public void verificaRendimentoContaGold(){
+        System.out.println("=======RENDIMENTO CONTA GOLD=======");
+        conta1.deposito(new BigDecimal(50000));
+//        conta1.deposito(new BigDecimal(1000));
+        assertEquals(new BigDecimal(50500), conta1.getSaldo());
+        System.out.println(conta1.getSaldo());
+    }
+
+    @Test
     public void verificaContaPlatinum(){
         System.out.println("=======CONTA PLATINUM=======");
         conta1.deposito(new BigDecimal(200000));
@@ -81,6 +90,25 @@ public class ContaMagicaTest {
         conta1.retirada(new BigDecimal(170000));
         conta1.retirada(new BigDecimal(10000));
         assertEquals(Categoria.GOLD, conta1.getCategoria());
+        System.out.println(conta1.getCategoria());
+    }
+
+    @Test
+    public void verificaGoldParaSilver(){
+        System.out.println("=======GOLD PARA SILVER=======");
+        conta1.deposito(new BigDecimal(50000));
+        conta1.retirada(new BigDecimal(25501));
+        assertEquals(Categoria.SILVER, conta1.getCategoria());
+        System.out.println(conta1.getCategoria());
+    }
+
+    @Test
+    public void verificaPlatinumParaSilver(){
+        System.out.println("=======PLATINUM PARA SILVER");
+        conta1.deposito(new BigDecimal(200000));
+        conta1.retirada(new BigDecimal(150000));
+        conta1.retirada(new BigDecimal(25000));
+        assertEquals(Categoria.SILVER, conta1.getCategoria());
         System.out.println(conta1.getCategoria());
     }
 }
